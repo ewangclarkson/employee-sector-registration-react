@@ -55,7 +55,7 @@ yarn start
 ```
 ###Access The Application
 Open your web browser and visit http://localhost:3000 to access the application.
-To access the application on line, visit the link https://hongkong-sar.vercel.app/
+To access the application on line, visit the link https://hk-sar.vercel.app/
 
 ## Features
 The application includes the following features:
