@@ -4,7 +4,7 @@ import Loader from "../loader/Loader";
 import Alert from "../alert/Alert";
 import axiosApi from "../checkin/config/axios.client";
 import {SectorLevel} from "../constants/sectorlevels.enum";
-import Select from "react-select";
+import Select,{components} from "react-select";
 
 const DefaultSector = ({formData, isEdit, selectedSectors}) => {
     const result = useFetch({url: "api/public/sectors"});
@@ -51,7 +51,8 @@ const DefaultSector = ({formData, isEdit, selectedSectors}) => {
                 return true;
             }
             return false;
-        });
+        }).map((opts) => ({... opts,label:opts.label.trim()}));
+
     }
     const options = buildOptions(result.data);
     const selectedOpts = buildSelectedOptions(options);
@@ -87,7 +88,13 @@ const DefaultSector = ({formData, isEdit, selectedSectors}) => {
                     })) : (setMessage("All form fields are required"), setIsError(true))
         );
     }
-
+   const MultiValueLabel = (props) => {
+        return (
+            <components.MultiValueLabel {...props} >
+                <>{props.children.trim()}</>
+            </components.MultiValueLabel>
+        );
+    };
     const setSelectedOptions = (transform) => {
         const sectorOptions = transform.map((option) => {
             const [id, depthType] = option.value.split("-");
@@ -160,6 +167,8 @@ const DefaultSector = ({formData, isEdit, selectedSectors}) => {
                                 isMulti
                                 isSearchable
                                 className="fm-input-width"
+                                hideSelectedOptions={false}
+                                components={{ MultiValueLabel }}
                             />
                         </div>
                     </div>
