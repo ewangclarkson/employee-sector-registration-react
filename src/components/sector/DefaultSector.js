@@ -167,7 +167,6 @@ const DefaultSector = ({formData, isEdit, selectedSectors}) => {
                                 isMulti
                                 isSearchable
                                 className="fm-input-width"
-                                hideSelectedOptions={false}
                                 components={{ MultiValueLabel }}
                             />
                         </div>
